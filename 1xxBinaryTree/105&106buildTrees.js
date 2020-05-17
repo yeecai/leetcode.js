@@ -19,3 +19,16 @@ var buildTree = function (preorder, inorder) {
     }
     return build(inorder)
 };
+
+//106
+var buildTree = function(inorder, postorder) {
+    let build = (inorder) => {
+        if(!inorder || !inorder.length) return null
+        let tmp = postorder.pop(), mid = inorder.indexOf(tmp)
+        let root = new TreeNode(tmp)
+        root.right = build(inorder.slice(mid+1))
+        root.left = build(inorder.slice(0, mid))
+        return root
+    }
+    return build(inorder)
+};

@@ -42,3 +42,17 @@ var sortedListToBST = function (head) {
     }
     return makeTree(head, null)
 };
+
+
+//110
+var isBalanced = function(root) {
+    const dfs = (node) => {
+        if(!node) return true
+        let left = dfs(node.left)
+        let right = dfs(node.right)
+        if(!left || !right || Math.abs(left - right) > 1) return false
+        return Math.max(left, right) + 1
+    }
+    
+    return dfs(root)
+}; 

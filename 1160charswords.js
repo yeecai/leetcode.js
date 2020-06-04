@@ -29,3 +29,32 @@ var countCharacters = function (words, chars) {
     }
     return size
 };
+
+// version1.1 map
+var countCharacters = function (words, chars) {
+    // charsMap and wordMap
+    // compare each char of word with chars
+    // if word has a char not in charsMap or more than the char in charsMap , out 
+    let charsMap = new Map()
+    for (let char of chars) {
+        charsMap.set(char, (charsMap.has(char) ? charsMap.get(char) + 1 : 1))
+    }
+
+    let size = 0
+    for (let word of words) {
+        let wordMap = new Map()
+        for (let char of word) {
+            wordMap.set(char, (wordMap.has(char) ? wordMap.get(char) + 1 : 1))
+        }
+        let out = false
+        // faster than compare each char
+        for (let [key,value] of wordMap) {
+            if (value > charsMap.get(key) || !charsMap.get(key)) {
+                out = true
+                break
+            }
+        }
+        size = out ? size: size + word.length
+    }
+    return size
+};

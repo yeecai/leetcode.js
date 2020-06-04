@@ -58,3 +58,21 @@ var countCharacters = function (words, chars) {
     }
     return size
 };
+
+// V2.0
+var countCharacters = function (words, chars) {
+    let size = 0
+    for (let word of words) {
+        let i = 0, out = false, temp = chars
+        while (i < word.length) {
+            if (temp.indexOf(word[i]) === -1) {
+                out = true
+                break
+            }
+            temp = temp.replace(word[i], '')
+            i++
+        }
+        size = out ? size: size + word.length
+    }
+    return size
+};
